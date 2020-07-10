@@ -271,14 +271,15 @@
         </div>
         <div>
           <p class="footer-link">Подпишитесь на рассылку</p>
-          <input
-            type="text"
-            placeholder="E-mail"
-            name="Email"
-            id="Email-input"
-            class="input-mail"
-          />
-          <button type="button" class="button">Подписаться</button>
+          <form class="form-footer">
+            <input type="email" placeholder="E-mail" name="Email" id="Email-input" class="input-mail" />
+            <button type="submit" class="button-send">
+              Подписаться
+              <svg class="icon-send" width="24px" height="24px">
+                <use href="./img/spritee.svg#icon-icon-send"></use>
+              </svg>
+            </button>
+          </form>
         </div>
       </div>
       <div class="devgoit">
@@ -293,5 +294,6 @@
 
       document.body.style.paddingTop = `${pageHeaderHeight}px`;
     </script>
+
   </body>
 </html>

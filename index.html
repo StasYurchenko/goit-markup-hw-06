@@ -61,8 +61,88 @@
           эффективные решения<br />
           для вашего бизнеса
         </h1>
-        <button type="button" class="button service">Заказать услугу</button>
+        <button type="button" class="button service" data-open-modal>
+          Заказать услугу
+        </button>
       </section>
+
+      <div class="backdrop is-hidden" data-backdrop>
+        <div class="modal">
+          <h2 class="modal-title">Оставьте свои данные, мы вам перезвоним</h2>
+          <form class="js-speaker-form modal-form">
+            <label class="form-fild">
+              <input
+                type="text"
+                name="name"
+                class="form-input"
+                placeholder=" "
+              />
+              <span class="form-label">Имя</span>
+              <svg class="icon-modal" width="18px" height="18px">
+                <use href="./img/spritee.svg#icon-name"></use>
+              </svg>
+            </label>
+
+            <label class="form-fild">
+              <input
+                type="text"
+                name="tel"
+                class="form-input"
+                placeholder=" "
+              />
+              <span class="form-label">Телефон</span>
+              <svg class="icon-modal" width="18px" height="18px">
+                <use href="./img/spritee.svg#icon-tell"></use>
+              </svg>
+            </label>
+
+            <label class="form-fild">
+              <input
+                type="text"
+                name="mail"
+                class="form-input"
+                placeholder=" "
+              />
+              <span class="form-label">Почта</span>
+              <svg class="icon-modal" width="18px" height="18px">
+                <use href="./img/spritee.svg#icon-mail"></use>
+              </svg>
+            </label>
+
+            <label class="form-texteria">
+              <textarea
+                name="comment"
+                class="texteria"
+                placeholder="Комментарий"
+              ></textarea>
+            </label>
+
+            <div class="form-agree">
+              <label class="field">
+                <input
+                  class="checkbox"
+                  type="checkbox"
+                  name="topic"
+                  value="html"
+                />
+                <span class="icon"> </span>
+                <span class="label"
+                  >Соглашаюсь с рассылкой и принимаю
+                  <a href="" class="link">Условия договора</a></span
+                >
+              </label>
+            </div>
+
+            <button type="submit" class="modal-button">Отправить</button>
+          </form>
+
+          <button class="close-modal" data-close-modal>
+            <svg width="11px" height="11px">
+              <use href="./img/spritee.svg#icon-vector"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
 
       <!--Преймущества-->
 
@@ -415,19 +495,21 @@
         </div>
         <div>
           <p class="footer-link">Подпишитесь на рассылку</p>
-          <input
-            type="text"
-            placeholder="E-mail"
-            name="Email"
-            id="Email-input"
-            class="input-mail"
-          />
-          <button type="button" class="button">
-            Подписаться
-            <svg class="icon-send">
-              <use href="./img/icon-send.svg"></use>
-            </svg>
-          </button>
+          <form class="form-footer">
+            <input
+              type="email"
+              placeholder="E-mail"
+              name="Email"
+              id="Email-input"
+              class="input-mail"
+            />
+            <button type="submit" class="button-send">
+              Подписаться
+              <svg class="icon-send" width="24px" height="24px">
+                <use href="./img/spritee.svg#icon-icon-send"></use>
+              </svg>
+            </button>
+          </form>
         </div>
       </div>
       <div class="devgoit">
@@ -441,6 +523,43 @@
         .getBoundingClientRect();
 
       document.body.style.paddingTop = `${pageHeaderHeight}px`;
+    </script>
+
+    <script>
+      const refs = {
+        openModalBtn: document.querySelector("[data-open-modal]"),
+        closeModalBtn: document.querySelector("[data-close-modal]"),
+        backdrop: document.querySelector("[data-backdrop]"),
+      };
+
+      refs.openModalBtn.addEventListener("click", toggleModal);
+      refs.closeModalBtn.addEventListener("click", toggleModal);
+
+      refs.backdrop.addEventListener("click", logBackdropClick);
+
+      function toggleModal() {
+        refs.backdrop.classList.toggle("is-hidden");
+      }
+
+      function logBackdropClick() {
+        console.log("Это клик в бекдроп");
+      }
+    </script>
+
+    <script>
+      (() => {
+        document
+          .querySelector(".js-speaker-form")
+          .addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            new FormData(e.currentTarget).forEach((value, name) =>
+              console.log(`${name}: ${value}`)
+            );
+
+            e.currentTarget.reset();
+          });
+      })();
     </script>
   </body>
 </html>
